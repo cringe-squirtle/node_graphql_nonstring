@@ -7,7 +7,7 @@ export const UserType = new graphql.GraphQLObjectType({
   fields: {
     id: { type: graphql.GraphQLInt },
     name: { type: graphql.GraphQLString },
-    info: { type: InfoType },
+    info: InfoField,
   },
 });
 
@@ -19,7 +19,6 @@ export const userField = {
   resolve: (_, { id }) => {
     return {
       ...(getData()?.user ?? []).find((user) => user.id === id),
-      info: InfoField.resolve(_, { id }),
     };
   },
 };

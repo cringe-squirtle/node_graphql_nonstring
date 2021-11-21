@@ -11,10 +11,7 @@ export const InfoType = new graphql.GraphQLObjectType({
 
 export const InfoField = {
   type: InfoType,
-  args: {
-    id: { type: graphql.GraphQLString },
-  },
-  resolve: (_, { id }) => {
-    return { ...(getData()?.info ?? []).find((info) => info.id === id) };
+  resolve: (parent, _) => {
+    return { ...(getData()?.info ?? []).find((info) => info.id === parent.id) };
   },
 };
