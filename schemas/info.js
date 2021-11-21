@@ -1,5 +1,5 @@
 import graphql from "graphql";
-import { getData } from "../data/getData.js";
+import { getData } from "../data/dataUtils.js";
 
 export const InfoType = new graphql.GraphQLObjectType({
   name: "Info",

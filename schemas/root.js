@@ -1,15 +1,28 @@
-import {graphqlHTTP} from 'express-graphql'
-import graphql from 'graphql'
+import { graphqlHTTP } from "express-graphql";
+import graphql from "graphql";
 
-import { userField } from './user.js';
-  
+import { userField, UserUpdateMutation } from "./user.js";
+
 export const queryType = new graphql.GraphQLObjectType({
-    name: 'Query',
-    fields: {
-      user: userField
-    }
-  });
+  name: "Query",
+  fields: {
+    user: userField,
+  },
+});
 
-  export const UserSchema = new graphql.GraphQLSchema({query:queryType});
+export const mutationType = new graphql.GraphQLObjectType({
+  name: "Mutation",
+  fields: {
+    update_user: UserUpdateMutation,
+  },
+});
 
-  export const rootGraphqlHTTP = graphqlHTTP({schema:UserSchema, graphiql:true})
+export const UserSchema = new graphql.GraphQLSchema({
+  query: queryType,
+  mutation: mutationType,
+});
+
+export const rootGraphqlHTTP = graphqlHTTP({
+  schema: UserSchema,
+  graphiql: true,
+});
